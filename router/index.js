@@ -2,7 +2,7 @@ import express from "express";
 const router = express.Router();
 
 router.get("/", (req, res) => {
-  res.render("main", { data: "Main" });
+  res.render("home", { data: "Main" });
 });
 
 export default router;
