@@ -2,8 +2,9 @@ import express from "express";
 const router = express.Router();
 
 router.get("/", (req, res) => {
-  console.log(req.user);
-  res.render("home", { data: "Main" });
+  const name = req.user;
+  if (!name) return res.redirect("/auth/login");
+  res.render("home", { name: name });
 });
 
 export default router;
