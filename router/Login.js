@@ -12,8 +12,7 @@ router.post(
     failureRedirect: "/auth/login",
   }),
   (req, res) => {
-    console.log("성공?");
-    res.redirect("http://localhost:3000/");
+    res.redirect("/?valid=");
   }
 );
 
