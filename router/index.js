@@ -7,7 +7,7 @@ router.get("/", (req, res) => {
 });
 
 router.get("/edit/:id", (req, res) => {
-  res.send(req.params.id);
+  res.render("edit");
 });
 
 router.get("/main", (req, res) => {
