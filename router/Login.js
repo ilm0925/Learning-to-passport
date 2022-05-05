@@ -10,16 +10,14 @@ router.post(
   "/login",
   passport.authenticate("local", {
     failureRedirect: "/auth/login",
-  }),
-  (req, res) => {
-    res.redirect("/?valid=");
-  }
+    successRedirect: "/main",
+  })
 );
 
 router.get("/logout", (req, res) => {
   req.logOut();
   req.session.destroy(() => {
-    res.redirect("/");
+    res.redirect("/main");
   });
 });
 

@@ -1,5 +1,4 @@
 import express from "express";
-import ejs from "ejs";
 import path from "path";
 
 const app = express();
@@ -13,9 +12,7 @@ import session from "express-session";
 import sessionStore from "session-file-store";
 const FileStore = sessionStore(session);
 
-import passport from "passport";
-import { Strategy } from "passport-local";
-import { stringify } from "querystring";
+import passport from "./lib/passport.js";
 
 app.set("views", __dirname + "/views");
 app.set("view engine", "ejs");
@@ -28,46 +25,12 @@ app.use(
     store: new FileStore(),
   })
 );
-app.use(passport.initialize());
-app.use(passport.session());
 
-const userInfo = {
-  name: "Egoing",
-  id: "Egoing123",
-  pwd: "12345",
-};
-
-passport.serializeUser(function (user, done) {
-  done(null, user.name);
-});
-
-passport.deserializeUser(function (name, done) {
-  console.log(`deserial ${name}`);
-  done(null, name);
-});
-
-passport.use(
-  new Strategy(
-    {
-      usernameField: "id",
-      passwordField: "pwd",
-    },
-    (id, pwd, done) => {
-      if (id != userInfo.id) {
-        console.log(1);
-        return done(null, false, { message: "invalid ID" });
-      } else if (pwd != userInfo.pwd) {
-        console.log(2);
-        return done(null, false, { message: "invalid Pwd" });
-      }
-      console.log("Login Success");
-      return done(null, userInfo);
-    }
-  )
-);
+passport(app);
 
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: false }));
+
 app.use("/", index);
 app.use("/auth", login);
 
