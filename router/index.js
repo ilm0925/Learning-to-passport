@@ -7,7 +7,15 @@ router.get("/", (req, res) => {
 });
 
 router.get("/edit/:id", (req, res) => {
-  res.render("edit");
+  const ID = req.user.ID;
+  const paramID = req.params.id;
+  const post = model.FindPost(paramID);
+
+  if (post && post.Writer == ID) {
+    res.render("edit", { Title: post.Title, desc: post.Desc });
+  } else {
+    res.send("<script>alert('접근할수없습니다.'); history.back(0)</script>");
+  }
 });
 
 router.get("/main", (req, res) => {
