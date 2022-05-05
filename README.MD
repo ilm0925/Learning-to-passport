@@ -1,6 +1,6 @@
-# Express-Template
+# express-Passport
 
 view : ejs
-Router / main, index
+Router / main, login
 
 **type : moudle**
