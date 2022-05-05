@@ -7,8 +7,8 @@ router.get("/", (req, res, next) => {
 });
 
 router.get("/main", (req, res) => {
+  if (!req.user) return res.redirect("/auth/login");
   const name = req.user.Name;
-  if (!name) return res.redirect("/auth/login");
   res.render("home", { name: name });
 });
 
