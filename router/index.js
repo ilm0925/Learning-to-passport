@@ -14,7 +14,7 @@ router.get("/main", (req, res) => {
   if (!req.user) return res.redirect("/auth/login");
   const name = req.user.Name;
   const Topic = model.AllPost();
-  res.render("home", { name: name, Topic: Topic });
+  res.render("home/home", { name: name, Topic: Topic });
 });
 
 router.get("/create", (req, res) => {});

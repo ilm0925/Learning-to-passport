@@ -1,0 +1,33 @@
+<table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <tr>
+            <th scope="col" class="px-6 py-3">글 제목</th>
+            <th scope="col" class="px-6 py-3">내용</th>
+            <th scope="col" class="px-6 py-3">작성자</th>
+
+            <th scope="col" class="px-6 py-3">
+                <span class="sr-only">Edit</span>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <% Topic.forEach((el,index)=> { %>
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
+                    <%= el.Title %>
+                </th>
+                <td class="px-6 py-4">
+                    <%= el.Desc %>
+                </td>
+                <td class="px-6 py-4">
+                    <%= el.Writer %>
+                </td>
+
+                <td class="px-6 py-4 text-right">
+                    <a href="/edit/<%= index + 1 %> "
+                        class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                </td>
+            </tr>
+            <% }) %>
+    </tbody>
+</table>
