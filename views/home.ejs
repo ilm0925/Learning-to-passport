@@ -8,9 +8,9 @@
     <link rel="stylesheet" href="./style.css" />
     <title>Document</title>
   </head>
-  <% console.log("Home.ejs " +name) %>
+
   <body>
-    <h1 class="text-xl">안녕하세님</h1>
+    <h1 class="text-xl"><%= name %></h1>
     <button
       onclick="location.href = '/auth/logout'"
       type="button"
