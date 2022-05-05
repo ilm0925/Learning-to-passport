@@ -6,12 +6,11 @@ const PORT = 3000;
 const __dirname = path.resolve();
 
 import index from "./router/index.js";
-import login from "./router/login.js";
+import login from "./router/auth.js";
 
 import session from "express-session";
 import sessionStore from "session-file-store";
 const FileStore = sessionStore(session);
-
 import passport from "./lib/passport.js";
 
 app.set("views", __dirname + "/views");
@@ -33,6 +32,11 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use("/", index);
 app.use("/auth", login);
+
+app.use((req, res, next) => {
+  if (!req.user) res.redirect("/auth/login");
+  next();
+});
 
 app.listen(PORT, () => {
   console.log(`http://localhost:${PORT}`);

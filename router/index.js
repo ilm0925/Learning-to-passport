@@ -2,9 +2,12 @@ import express from "express";
 import model from "../lib/model.js";
 const router = express.Router();
 
-router.get("/", (req, res, next) => {
+router.get("/", (req, res) => {
   res.redirect("/main");
-  next();
+});
+
+router.get("/edit/:id", (req, res) => {
+  res.send(req.params.id);
 });
 
 router.get("/main", (req, res) => {
@@ -13,5 +16,7 @@ router.get("/main", (req, res) => {
   const Topic = model.AllPost();
   res.render("home", { name: name, Topic: Topic });
 });
+
+router.get("/create", (req, res) => {});
 
 export default router;

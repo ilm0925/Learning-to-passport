@@ -6,12 +6,17 @@ router.get("/login", (req, res) => {
   if (req.user) return res.redirect("/");
   res.render("login.ejs");
 });
+
 router.post(
   "/login",
   passport.authenticate("local", {
     failureRedirect: "/auth/login",
-    successRedirect: "/main",
-  })
+  }),
+  function (req, res) {
+    req.session.save(function () {
+      res.redirect("/main");
+    });
+  }
 );
 
 router.get("/logout", (req, res) => {
