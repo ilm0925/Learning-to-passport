@@ -1,0 +1,17 @@
+//     <button onclick="location.href = '/auth/logout'" type="button"
+//     class="text-white bg-gradient-to-r from-red-400 via-red-600 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
+//     로그아웃
+//   </button>
+
+//   <button onclick="alert('글쓰기')" type="button"
+//     class="text-white bg-gradient-to-r from-blue-400 via-blue-600 to-blue-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
+//     글쓰기
+//   </button>
+
+document.querySelector("#delete").addEventListener("click", () => {
+  fetch("http://localhost:3000/delete/2", {
+    method: "DELETE",
+  })
+    .then((response) => response.json())
+    .then((data) => alert(data.message));
+});
